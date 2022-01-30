@@ -28,7 +28,6 @@ app.get("/createEmployeeTable", (req, res) => {
     "CREATE TABLE employees(id int AUTO_INCREMENT, firstName VARCHAR(30),lastName VARCHAR(30), email VARCHAR(80), PRIMARY KEY(id))";
   db.query(sql, (err, result) => {
     if (err) throw err;
-    console.log(result);
     res.send("table created");
   });
 });
