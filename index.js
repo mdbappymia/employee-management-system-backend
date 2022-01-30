@@ -56,12 +56,11 @@ app.post("/employees", (req, res) => {
 // get all employees
 app.get("/employees/:page", (req, res) => {
   const page = req.params.page;
-  let start = page * 2;
-  let end = start + 2;
+  let start = page * 5;
+  let end = start + 5;
   const sql = `SELECT * FROM employees LIMIT ${end} OFFSET ${start}`;
   db.query(sql, (err, result) => {
     if (err) throw err;
-    console.log(result);
     res.json(result);
   });
 });
@@ -69,8 +68,8 @@ app.get("/employees/:page", (req, res) => {
 var transport = nodemailer.createTransport({
   host: process.env.HOST,
   auth: {
-    user: process.env.USER,
-    pass: process.env.PASS,
+    user: "", //email username
+    pass: "", //email password
   },
 });
 app.post("/sendEmail", async (req, res) => {
@@ -83,7 +82,6 @@ app.post("/sendEmail", async (req, res) => {
     html: "<b></b>", // html body
   });
 
-  console.log(result);
   res.json(result);
 });
 // ================================================================
