@@ -78,7 +78,7 @@ app.post("/sendEmail", async (req, res) => {
     to: data.email, // list of receivers
     subject: data.subject, // Subject line
     text: data.message, // plain text body
-    html: "<b></b>", // html body
+    html: `<p>${data.message}</p>`, // html body
   });
 
   res.json(result);
